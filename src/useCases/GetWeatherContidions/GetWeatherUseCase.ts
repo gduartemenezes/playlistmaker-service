@@ -1,17 +1,18 @@
 import { Weather } from '../../entities/Weather'
-import { IWeatherRepository } from '../../repositories/implementations/IWeatherRepository'
+import { IWeatherProvider } from '../../providers/IWeatherProvider'
 import { IGetWeatherRequestDTO } from './GetWeatherDTO'
 
 export class GetWeatherUseCase {
-  constructor (private readonly weatherRepository: IWeatherRepository) { }
+  constructor (private readonly weatherProvider: IWeatherProvider) { }
   async execute (data: IGetWeatherRequestDTO): Promise<Weather> {
+    console.log('data', data)
     if (data.city) {
-      return await this.weatherRepository.findByCity(data.city)
+      return await this.weatherProvider.findByCity(data.city)
     }
-    if (data.coordinates) {
-      return await this.weatherRepository.findByCoordinates(
-        data.coordinates.lat,
-        data.coordinates.lon
+    if (data.lon && data.lat) {
+      return await this.weatherProvider.findByCoordinates(
+        data.lat,
+        data.lon
       )
     }
   }
