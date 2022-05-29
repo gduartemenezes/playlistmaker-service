@@ -10,7 +10,7 @@ export class WeatherProvider implements IWeatherProvider {
     return response.data
   }
 
-  async findByCoordinates (lat: number, lon: number): Promise<Weather> {
+  async findByCoordinates (lat: string, lon: string): Promise<Weather> {
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${ThirdPartyKeys.openWeather}`)
     console.log(response.data)
     return response.data
