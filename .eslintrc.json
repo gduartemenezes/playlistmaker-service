@@ -5,6 +5,6 @@
   },
   "rules": {
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "single-quote": "on"
+    "single-quote": "off"
   }
 }
